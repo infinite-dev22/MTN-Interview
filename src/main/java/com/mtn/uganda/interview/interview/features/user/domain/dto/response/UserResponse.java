@@ -13,9 +13,5 @@ public record UserResponse(
         String username,
         String email,
         String phone,
-        String website,
-        UUID createdBy,
-        Instant createdAt,
-        UUID updatedBy,
-        Instant updatedAt) implements Serializable {
+        String website) implements Serializable {
 }
