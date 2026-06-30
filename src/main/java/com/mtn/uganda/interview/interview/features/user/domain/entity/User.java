@@ -35,9 +35,6 @@ public class User {
     @Column(length = 100)
     private String website;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> posts = new ArrayList<>();
-
     @CreatedBy
     private Long createdBy;
     @CreatedDate
