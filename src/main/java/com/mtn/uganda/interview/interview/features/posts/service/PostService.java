@@ -9,6 +9,7 @@ import com.mtn.uganda.interview.interview.features.posts.domain.dto.response.Pos
 import com.mtn.uganda.interview.interview.features.posts.domain.entity.Post;
 import com.mtn.uganda.interview.interview.features.posts.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -42,8 +43,8 @@ public class PostService {
         repository.saveAll(posts);
     }
 
-    public PostResponse updatePost(UpdatePostRequest request) {
-        var oldPost = repository.findById(request.id()).orElseThrow();
+    public PostResponse updatePost(@NonNull Long id, UpdatePostRequest request) {
+        var oldPost = repository.findById(id).orElseThrow();
 
         var post = mapper.partialUpdate(request, oldPost);
 
@@ -60,7 +61,7 @@ public class PostService {
                 .toList();
     }
 
-    private void loadPosts() {
+    public void loadPosts() {
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<Post>> typeReference = new TypeReference<List<Post>>() {
         };
